@@ -3,7 +3,8 @@ package com.coffee.json;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import com.coffee.DB.DB;
+import com.coffee.entity.user;
 import com.coffee.restful.REST;
 import com.google.gson.JsonObject;
 @WebServlet("/AddUser")
@@ -19,7 +20,8 @@ public class AddUser extends REST {
 		// 后台处理部分 .. 省略 ...
 		System.out.println("用户:" + name + ",密码: " + password
 				+ ", 邮件: " + email );		
-
+                 user u = new user(name,password,email);
+		DB.insert(u);
 		// 可以返回 null, 或者 int, long, double, String, 或者  JSONObject / JSONArray
 		return 123;
 	}
